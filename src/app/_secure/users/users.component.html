@@ -1,0 +1,60 @@
+<div class="col-sm-12">
+    <app-http-error *ngIf="hideHttpServerError"></app-http-error>
+</div>
+
+<div class="row">
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+        <div class="inner">
+            <h3>{{ totalUsers }}</h3>
+
+            <p>Total Users</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+        <div class="inner">
+            <h3>{{ totalActiveUsers }}</h3>
+
+            <p>Total Active Users</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-red">
+        <div class="inner">
+            <h3>{{ totalDeletedUsers }}</h3>
+
+            <p>Total Inactive Users</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+
+<span [ngSwitch]="crudTransaction" class="user-switch-custom">
+
+  <app-users-list *ngSwitchCase="1" [switchCase]="1" [userArr]="userArr" [p]="p" [total]="total" [totalUsers]="totalUsers" (showEditForm)="fromEmit($event)"></app-users-list>
+  <app-users-add *ngSwitchCase="2" [switchCase]="2" [userArr]="userArr" [p]="p" [total]="total" [totalUsers]="totalUsers" (showEditForm)="fromEmit($event)"></app-users-add>
+   <app-users-update *ngSwitchCase="3" [switchCase]="3" [userArr]="userArr" [p]="p" [total]="total" [totalUsers]="totalUsers" [selectedItem]="selectedItem" [selectedIndex]="selectedIndex" (showEditForm)="fromEmit($event)"></app-users-update>
+    <pagination-controls *ngSwitchCase="1" id="users-pagination" (pageChange)="pageChanged($event)" maxSize=5 previousLabel="" nextLabel=""></pagination-controls>
+
+</span>

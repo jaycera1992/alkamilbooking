@@ -1,0 +1,36 @@
+<body class="hold-transition login-page">
+    <div class="custom-login-box">
+        <div class="login-logo">
+            <a href="#"><b>Al Kamil</b>booking</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <div class="box-body">
+            <div class="alert alert-danger alert-dismissible" *ngIf="userNotExist">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Username / Password you've entered are incorrect.
+            </div>
+        </div>
+            <form class="form mt-4" #f="ngForm" role="form" novalidate (ngSubmit)="login(f.value)">
+            <div class="form-group has-feedback">
+                <input type="email" class="form-control" placeholder="Email" name="email" #email="ngModel" [ngModel]="auth.email" class="form-control" matInput required minlength="1" maxlength="40">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" placeholder="Password" name="password" class="form-control" matInput [ngModel]="auth.password" required #password="ngModel" minlength="1" maxlength="40">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-xs-4 pull-right">
+                    <button class="btn btn-primary btn-block btn-flat" *ngIf="loadingLogin" [disabled]="loadingLogin" type="submit"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i></button>
+                    <button class="btn btn-primary btn-block btn-flat" *ngIf="!loadingLogin" [disabled]="f.invalid" type="submit">Sign In</button>
+                </div>
+                <!-- /.col -->
+            </div>
+            </form>
+        </div>
+        <!-- /.login-box-body -->
+    </div>    
+</body>

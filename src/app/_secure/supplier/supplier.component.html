@@ -1,0 +1,4 @@
+<span [ngSwitch]="crudTransaction" class="user-switch-custom">
+    <app-supplier-list *ngSwitchCase="1" [categoryList]="categoryList" [p]="p" [total]="total" [totalCategory]="totalCategory" (showEditForm)="fromEmit($event)"></app-supplier-list>
+    <pagination-controls *ngSwitchCase="1" id="category-pagination" (pageChange)="pageChanged($event)" maxSize=8   previousLabel="" nextLabel=""></pagination-controls>
+  </span>

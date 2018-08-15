@@ -1,0 +1,70 @@
+<div class="row" *ngIf="successMessage">
+  <div class="col-md-4">
+      <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              Successfully added supplier, Redirecting to Staff list.
+          </div>
+      <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- left column -->
+  <div class="col-md-4">
+      <!-- general form elements -->
+      <div class="box box-primary">
+      <div class="box-header with-border">
+          <h3 class="box-title">Add Staff</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form role="form" #f="ngForm" novalidate (ngSubmit)="submitStaff(f.value)">
+          <div class="box-body">
+              <div class="form-group">
+                  <input class="form-control" placeholder="First Name" required name="firstName" #firstName="ngModel" [ngModel]="user.firstName">
+              </div>
+              <div class="form-group">
+                  <input class="form-control" placeholder="Last Name" required name="lastName" #lastName="ngModel" [ngModel]="user.lastName">
+              </div>
+              <div class="form-group">
+                  <input class="form-control" placeholder="Email" required name="email" #email="ngModel" [ngModel]="user.email">
+              </div>
+              <div class="form-group">
+                  <input class="form-control" type="password" minlength="5" maxlength="20" required placeholder="Password" name="password" #password="ngModel" [ngModel]="user.password">
+              </div>
+              <div class="form-group">
+                  <select class="form-control" placeholder="Access Role" required name="adminRole" #adminRole="ngModel" [ngModel]="user.adminRole">
+                          <option selected value="" disabled>Access Role</option>
+                      <option *ngFor="let role of adminRoles" value="{{role.value}}">{{role.label}}</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <div class="row">
+                      <div class="col-xs-3">
+                              <input type="text" class="form-control" disabled value="+971">
+                      </div>
+                      <div class="col-xs-9">
+                              <input type="number" class="form-control" placeholder="Ex. 564123123" required name="mobileNumber" #mobileNumber="ngModel" [ngModel]="user.mobileNumber">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <input placeholder="Position" class="form-control" required name="designation" #designation="ngModel" [ngModel]="user.designation">
+              </div>
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+              <button class="btn btn-flat btn-danger pull-left" *ngIf="!loadingSave" type="submit" (click)="cancelAddStaff()"><strong>Cancel</strong></button>
+              <button class="btn btn-flat btn-success pull-right" *ngIf="!loadingSave" [disabled]="f.invalid" type="submit"><strong>Submit</strong></button>
+              <button class="btn btn-flat btn-success pull-right" *ngIf="loadingSave" [disabled]="loadingSave" type="submit"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Saving</button>
+          </div>
+      </form>
+      </div>
+      <!-- /.box -->
+  </div>
+  <div class="col-md-8">
+      <app-users-list [switchCase]="2" [userArr]="userArr" [p]="p" [total]="total" [totalUsers]="totalUsers" (showEditForm)="fromEmit($event)"></app-users-list>
+  </div>
+  <!--/.col (left) -->
+</div>

@@ -1,0 +1,84 @@
+<div class="row" *ngIf="successMessage">
+  <div class="col-md-4">
+      <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              Successfully added category
+          </div>
+      <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="row" *ngIf="successMessageData">
+    <div class="col-md-4">
+        <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                Successfully added category data, Redirecting to Category list.
+            </div>
+        <div class="clearfix"></div>
+    </div>
+  </div>
+
+<div class="row">
+  <!-- left column -->
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+          <div class="box-header with-border">
+              <h3 class="box-title">Add Category</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" #f="ngForm" novalidate (ngSubmit)="submitCategory(f.value)">
+              <div class="box-body">
+                  <div class="form-group">
+                      <input class="form-control" placeholder="Category" required name="category" #category="ngModel" [ngModel]="grocery.category">
+                  </div>
+              </div>
+              <!-- /.box-body -->
+    
+              <div class="box-footer">
+                  <button class="btn btn-flat btn-success pull-right" *ngIf="!loadingSave" [disabled]="f.invalid" type="submit"><strong>Submit</strong></button>
+                  <button class="btn btn-flat btn-success pull-right" *ngIf="loadingSave" [disabled]="loadingSave" type="submit"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Saving</button>
+              </div>
+          </form>
+          </div>
+          <!-- /.box -->
+      </div>
+      <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+          <div class="box-header with-border">
+              <h3 class="box-title">Add Data to Master Table</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+          <form role="form" #g="ngForm" novalidate (ngSubmit)="submitCategoryData(g.value)">
+              <div class="box-body">
+                  <div class="form-group">
+                      <select class="form-control" placeholder="Category" required name="categoryRef" #categoryRef="ngModel" [ngModel]="category.categoryRef">
+                              <option selected value="" disabled>Category</option>
+                          <option *ngFor="let category of categoryReference" value="{{category.value}}">{{category.label}}</option>
+                      </select>
+                  </div>
+              </div>
+              <!-- /.box-body -->
+    
+              <div class="box-footer">
+                  <button class="btn btn-flat btn-danger pull-left" *ngIf="!loadingSave" type="submit" (click)="cancelAddCategory()"><strong>Cancel</strong></button>
+                  <button class="btn btn-flat btn-success pull-right" *ngIf="!loadingSave" [disabled]="g.invalid" type="submit"><strong>Submit</strong></button>
+                  <button class="btn btn-flat btn-success pull-right" *ngIf="loadingSave" [disabled]="loadingSave" type="submit"><i class="fa fa-spin fa-circle-o-notch" aria-hidden="true"></i> Saving</button>
+              </div>
+          </form>
+          </div>
+          <!-- /.box -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-8">
+      <app-grocery-list [switchCase]="2" [groceryArr]="groceryArr" [p]="p" [total]="total" [totalGrocery]="totalGrocery" (showEditForm)="fromEmit($event)"></app-grocery-list>
+  </div>
+  <!--/.col (left) -->
+</div>

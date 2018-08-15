@@ -1,0 +1,62 @@
+.custom-button-login {
+    margin-bottom: 20px;
+}
+
+.login-input-full-width {
+    width: 85%;
+}
+
+.custom-nav-link {
+    color: #fff !important;
+}
+
+.user-input-full-width {
+    width: 100%;
+}
+
+.ngx-pagination {
+    float: left !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+.user-switch-custom {
+    float: left;
+    width: 100%;
+}
+
+.booking-btn {
+    padding: 5px 12px !important;
+    margin-right:15px;
+}
+
+.custom-login-box, .register-box {
+    width: 360px;
+    margin: 7% auto;
+}
+
+/* 
+@media (max-width: 768px) {
+    .custom-login-box,
+    .custom-register-box {
+      width: 90%;
+      margin-top: 20px;
+    }
+  }
+  .custom-login-box-body,
+  .register-box-body {
+    background: #fff;
+    padding: 20px;
+    border-top: 0;
+    color: #666;
+  }
+  .custom-login-box-body .form-control-feedback,
+  .register-box-body .form-control-feedback {
+    color: #777;
+  }
+  .custom-login-box-msg,
+  .register-box-msg {
+    margin: 0;
+    text-align: center;
+    padding: 0 20px 20px 20px;
+  } */
